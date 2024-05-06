@@ -1,7 +1,14 @@
 import { Button, Flex, Row } from "antd";
 import { Header } from "antd/es/layout/layout";
+import { DrawerMobile } from "../Drawer/Drawer";
+import { useState } from "react";
 
 export const HeaderLayout = () => {
+  const [open, setOpen] = useState(false);
+
+  const onClose = () => {
+    setOpen(false);
+  };
   return (
     <>
       <Header className="flex justify-between items-center bg-[white] text-[black]">
@@ -18,11 +25,12 @@ export const HeaderLayout = () => {
             </nav>
           </Flex>
           <Flex className="flex gap-2">
-            <Button>Login</Button>
+            <Button onClick={() => setOpen(true)}>Login</Button>
             <Button className="border-2 border-black-500">Register</Button>
           </Flex>
         </Row>
       </Header>
+      <DrawerMobile open={open} onClose={onClose} />
     </>
   );
 };
