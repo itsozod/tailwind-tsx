@@ -3,16 +3,18 @@ import { Button, Flex, Row, Typography } from "antd";
 export const Main = () => {
   return (
     <>
-      <Flex className="m-auto max-w-screen-xl w-full items-center justify-center p-10 gap-40 ">
+      <Flex className="m-auto max-w-screen-xl w-full items-center justify-center p-10 gap-10 sm:gap-40 flex-col-reverse sm:flex-row">
         <Flex
           vertical={true}
-          style={{
-            width: "400px",
-          }}
+          className="w-full sm:w-[400px]"
           gap={20}
           align="start"
         >
-          <Typography.Title level={1}>Make remote work</Typography.Title>
+          <Typography.Title level={1}>
+            <div>Make</div>
+            <div>remote work</div>
+          </Typography.Title>
+
           <Row>
             Get your team in sync, no matter your location. Streamline
             processes, create team rituals, and watch productivity soar
@@ -27,8 +29,14 @@ export const Main = () => {
             Learn more
           </Button>
         </Flex>
-        <Flex style={{ width: "300px" }}>
-          <img src="image-hero-desktop.png" alt="" />
+        <Flex className="w-full sm:w-[300px]">
+          <picture>
+            <source
+              srcSet="/image-hero-mobile.png"
+              media="(max-width: 700px)"
+            ></source>
+            <img src="/image-hero-desktop.png" alt="Desktop Image" />
+          </picture>
         </Flex>
       </Flex>
     </>
