@@ -3,10 +3,37 @@ import { Header } from "antd/es/layout/layout";
 import { DrawerMobile } from "../Drawer/Drawer";
 import { useState } from "react";
 import { useMediaQuery } from "@uidotdev/usehooks";
+import { IconDown } from "../../assets/icons/IconDown";
+import { IconUp } from "../../assets/icons/IconUp";
+
+const links = [
+  {
+    id: 1,
+    name: "Features",
+    iconUp: <IconUp />,
+    IconDown: <IconDown />,
+  },
+  {
+    id: 2,
+    name: "Company",
+    iconUp: <IconUp />,
+    IconDown: <IconDown />,
+  },
+  {
+    id: 3,
+    name: "Careers",
+  },
+  {
+    id: 4,
+    name: "About",
+  },
+];
 
 export const HeaderLayout = () => {
   const [open, setOpen] = useState(false);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 703px)");
+  const [icon, setIcon] = useState(false);
+  const [iconId, setIconId] = useState<string | number>("");
 
   const onClose = () => {
     setOpen(false);
@@ -20,16 +47,29 @@ export const HeaderLayout = () => {
             {isSmallDevice ? null : (
               <nav className="flex justify-center items-center">
                 <ul className="flex gap-10">
-                  <li>Features</li>
-                  <li>Company</li>
-                  <li>Carreer</li>
-                  <li>About</li>
+                  {links?.map((link) => {
+                    return (
+                      <div
+                        onClick={() => {
+                          setIcon((prev) => !prev);
+                          setIconId(link?.id);
+                        }}
+                        className="flex items-center gap-3 cursor-pointer"
+                        key={link?.id}
+                      >
+                        <li>{link?.name}</li>
+                        {icon && iconId === link?.id
+                          ? link?.iconUp
+                          : link?.IconDown}
+                      </div>
+                    );
+                  })}
                 </ul>
               </nav>
             )}
           </Flex>
           {isSmallDevice ? (
-            <Flex className="w-5" onClick={() => setOpen(true)}>
+            <Flex className="w-5 cursor-pointer" onClick={() => setOpen(true)}>
               <img className="max-w-full" src="/burger-bar.png" alt="" />
             </Flex>
           ) : (
