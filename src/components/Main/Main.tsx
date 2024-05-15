@@ -32,10 +32,10 @@ export const Main = () => {
         <Flex className="w-full sm:w-[300px]">
           <picture>
             <source
-              srcSet="/image-hero-mobile.png"
+              srcSet="/image-hero-mobile.webp"
               media="(max-width: 700px)"
             ></source>
-            <img src="/image-hero-desktop.png" alt="Desktop Image" />
+            <img src="/image-hero-desktop.webp" alt="Desktop Image" />
           </picture>
         </Flex>
       </Flex>
